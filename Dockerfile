@@ -1,7 +1,8 @@
 FROM ubuntu:trusty
 MAINTAINER Abhinav Sharma <abhi18av@outlook.com>
 
-RUN apt install wget unzip tree
+RUN apt update \
+    apt install wget unzip tree
 
 RUN apt-add-repository ppa:fkrull/deadsnakes \
     apt-get update \
@@ -9,7 +10,10 @@ RUN apt-add-repository ppa:fkrull/deadsnakes \
 
 
 #TODO change workdir
-#http://resistance-sniffer.bi.up.ac.za/Mycobacterium_tuberculosis/help/mtb_resistance_sniffer.zip
+RUN cd home && \
+    wget http://resistance-sniffer.bi.up.ac.za/Mycobacterium_tuberculosis/help/mtb_resistance_sniffer.zip && \
+    unzip mtb_resistance_sniffer.zip && \
+    chmod 755 -R  mtb_resistance_sniffer/lib/bin/
 
 
 #TODO change workdir for running the tool
